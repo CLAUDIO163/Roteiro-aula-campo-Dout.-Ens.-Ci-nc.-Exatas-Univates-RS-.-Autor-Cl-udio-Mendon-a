@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roteiro para Aula de Campo</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            border-radius: 25px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 40px rgba(238, 90, 36, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '🌳';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.1;
+            top: -50px;
+            right: -50px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .header::after {
+            content: '🔍';
+            position: absolute;
+            font-size: 150px;
+            opacity: 0.1;
+            bottom: -30px;
+            left: -30px;
+            animation: float 4s ease-in-out infinite reverse;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        .main-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fff;
+            opacity: 0.95;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .mission-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 25px 0;
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.2);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .mission-card:hover {
+            transform: translateY(-5px) scale(1.02);
+        }
+        
+        .question-box {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 35px;
+            margin: 25px 0;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            border-left: 8px solid #ff6b6b;
+            position: relative;
+        }
+        
+        .question-icon {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: #ff6b6b;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .instructions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .instruction-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-top: 5px solid;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .instruction-card:nth-child(1) { border-top-color: #ff6b6b; }
+        .instruction-card:nth-child(2) { border-top-color: #4ecdc4; }
+        .instruction-card:nth-child(3) { border-top-color: #45b7d1; }
+        .instruction-card:nth-child(4) { border-top-color: #f39c12; }
+        
+        .instruction-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+        
+        .categories-section {
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            border-radius: 25px;
+            padding: 40px;
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+        
+        .category-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 3px solid transparent;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px) scale(1.03);
+            border-color: #667eea;
+        }
+        
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+            text-align: center;
+        }
+        
+        .roles-section {
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            border-radius: 25px;
+            padding: 40px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+        
+        .role-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .role-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+        
+        .role-card:hover::before {
+            left: 100%;
+        }
+        
+        .role-card:hover {
+            transform: translateY(-8px);
+        }
+        
+        .observations-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 3px dashed #667eea;
+            position: relative;
+        }
+        
+        .observations-section::before {
+            content: '📝';
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            background: #667eea;
+            color: white;
+            font-size: 1.5rem;
+            padding: 10px 15px;
+            border-radius: 50%;
+        }
+        
+        .interactive-element {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+            font-size: 1rem;
+        }
+        
+        .interactive-element:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .highlight {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        
+        .text-lines {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            min-height: 150px;
+            background-image: repeating-linear-gradient(
+                #f8f9fa 0px,
+                #f8f9fa 24px,
+                #dee2e6 25px,
+                #dee2e6 26px
+            );
+        }
+        
+        .separator {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #667eea, transparent);
+            margin: 40px 0;
+            border-radius: 2px;
+        }
+        
+        .method-section {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 25px 0;
+            color: white;
+        }
+        
+        .method-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .method-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .method-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .method-list li:before {
+            content: '• ';
+            color: #ffeaa7;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            
+            .container {
+                max-width: none !important;
+                padding: 20px !important;
+                box-shadow: none !important;
+                background: white !important;
+            }
+            
+            .header, .mission-card, .question-box, .categories-section, .roles-section, .method-section {
+                background: white !important;
+                box-shadow: none !important;
+                border: 2px solid #ccc !important;
+                margin: 20px 0 !important;
+                color: black !important;
+            }
+            
+            .interactive-element, .floating-icon, .animated-bg {
+                display: none !important;
+            }
+            
+            .instruction-card, .category-card, .role-card {
+                background: white !important;
+                border: 1px solid #ccc !important;
+                box-shadow: none !important;
+            }
+            
+            .main-title, .subtitle {
+                color: black !important;
+            }
+            
+            .text-lines {
+                background: white !important;
+                border: 1px solid #ccc !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-title { font-size: 2rem; }
+            .subtitle { font-size: 1.2rem; }
+            .container { padding: 10px; }
+            .header { padding: 25px; }
+        }
+        
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .floating-icon {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.1;
+            animation: floatRandom 8s infinite linear;
+        }
+        
+        @keyframes floatRandom {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg" id="animatedBg"></div>
+    
+    <div class="container">
+        <!-- HEADER PRINCIPAL -->
+        <div class="header">
+            <h1 class="main-title">🔍 ROTEIRO PARA AULA DE CAMPO</h1>
+            <p class="subtitle">Missão investigativa: o caso das árvores eliminadas e mutiladas!</p>
+        </div>
+        
+        <!-- QUESTÃO PROBLEMATIZADORA -->
+        <div class="question-box">
+            <div class="question-icon">🤔</div>
+            <h2 style="color: #ff6b6b; font-size: 1.5rem; margin-bottom: 20px;">Questão problematizadora para aula de campo:</h2>
+            <p style="font-size: 1.1rem; line-height: 1.7; color: #333;">
+                Da mesma forma que nós, as árvores de nossa cidade têm direito à vida, à integridade física e a um ambiente saudável para se desenvolver. Mas o que acontece com uma árvore urbana que oferece risco real de acidentes contra moradores? Onde termina o direito à segurança pública e começam os direitos das árvores? Será que existe uma <span class="highlight">'poda ética'</span> que protege <strong>TANTO</strong> as pessoas <strong>QUANTO</strong> preserva a dignidade e saúde das árvores?
+            </p>
+        </div>
+        
+        <!-- INSTRUÇÕES DA MISSÃO -->
+        <div class="mission-card">
+            <h2 style="font-size: 2rem; margin-bottom: 20px; text-align: center;">🕵️‍♂️ INSTRUÇÕES DA MISSÃO 🕵️‍♀️</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 20px; text-align: center;">
+                🎯 Utilize este roteiro para orientar suas observações durante a aula de campo. Lembre-se de que você é o observador, sendo este roteiro apenas um guia. Você pode observar outras situações que não estejam neste roteiro e anotá-las no caderno de campo ou registrá-las com o celular.
+            </p>
+        </div>
+        
+        <!-- GRID DE INSTRUÇÕES -->
+        <div class="instructions-grid">
+            <div class="instruction-card">
+                <h3 style="color: #ff6b6b; font-size: 1.3rem; margin-bottom: 15px;">📱 Registro Digital</h3>
+                <p>Use o celular para registrar as evidências observadas</p>
+            </div>
+            
+            <div class="instruction-card">
+                <h3 style="color: #4ecdc4; font-size: 1.3rem; margin-bottom: 15px;">📝 Anotações</h3>
+                <p>Anote no caderno de campo evidências que são mais relevantes</p>
+            </div>
+            
+            <div class="instruction-card">
+                <h3 style="color: #45b7d1; font-size: 1.3rem; margin-bottom: 15px;">👥 Observação Coletiva</h3>
+                <p>Todos observarão as mesmas situações, mas interpretem de acordo com seu papel/função no Júri simulado (acusação ou defesa) após sorteio em aula posterior</p>
+            </div>
+            
+            <div class="instruction-card">
+                <h3 style="color: #f39c12; font-size: 1.3rem; margin-bottom: 15px;">👁️ Liberdade Investigativa</h3>
+                <p>Você poderá observar qualquer situação que não esteja nesse roteiro</p>
+            </div>
+        </div>
+        
+        <div class="separator"></div>
+        
+        <!-- DILEMA ÉTICO -->
+        <div class="mission-card">
+            <h2 style="font-size: 2rem; margin-bottom: 20px; text-align: center;">⚖️ O DILEMA ÉTICO DAS ÁRVORES!</h2>
+            <p style="font-size: 1.1rem; line-height: 1.7; text-align: center;">
+                Da mesma forma que nós, as árvores de nossa cidade têm direito à vida, à integridade física e a um ambiente saudável para se desenvolver. Mas o que acontece quando uma árvore urbana oferece risco real de acidentes? Onde termina o direito à segurança pública e começam os direitos das árvores? Será que existe uma <span style="background: rgba(255,255,255,0.3); padding: 2px 8px; border-radius: 5px; font-weight: bold;">'poda ética'</span> que protege tanto as pessoas quanto preserva a dignidade das árvores?
+            </p>
+        </div>
+        
+        <!-- MISSÃO DO CIENTISTA -->
+        <div class="question-box">
+            <div class="question-icon">🎯</div>
+            <h2 style="color: #ff6b6b; font-size: 1.5rem; margin-bottom: 20px;">SUA MISSÃO COMO CIENTISTA AMBIENTAL!</h2>
+            <p style="font-size: 1rem; line-height: 1.6; margin-bottom: 15px; color: #666; font-style: italic;">
+                Os estudantes receberão essa missão no dia da aula de campo!
+            </p>
+            <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 20px;">
+                Você é agora é um estudante explorador das árvores de nossa cidade! Sua missão é descobrir evidências ou fatos que respondam à questão: 
+            </p>
+            <div style="background: linear-gradient(45deg, #ff6b6b, #ee5a24); color: white; padding: 20px; border-radius: 15px; text-align: center; font-size: 1.2rem; font-weight: bold;">
+                A poda drástica de árvores é segurança pública necessária ou crime ambiental?
+            </div>
+        </div>
+        
+        <!-- MÉTODO DE INVESTIGAÇÃO -->
+        <div class="method-section">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px; text-align: center;">🔍 Método de investigação</h3>
+            <ul class="method-list">
+                <li>Observe com olhar científico crítico as situações das árvores levando em consideração os aspectos social, biológico, ecológico, econômico envolvidos na arborização urbana e os impactos de poda.</li>
+                <li>Questione o que vê (Por quê? Como? Quando?)</li>
+                <li>Registre evidências relevantes</li>
+                <li>Analise diferentes visões ou entendimentos sobre o assunto</li>
+                <li>Construa argumentos baseados em evidências que observou</li>
+            </ul>
+        </div>
+        
+        <!-- CATEGORIAS PARA INVESTIGAR -->
+        <div class="categories-section">
+            <h2 style="font-size: 2rem; margin-bottom: 20px; text-align: center; color: #333;">🧭 Você poderá observar as "grandes categorias para investigar":</h2>
+            <p style="text-align: center; font-size: 1.1rem; margin-bottom: 30px; color: #666;">
+                Você deve decidir quais são relevantes para SUA argumentação:
+            </p>
+            
+            <div class="category-grid">
+                <div class="category-card" onclick="highlightCategory(this)">
+                    <span class="category-icon">🌳</span>
+                    <h3 style="color: #27ae60; margin-bottom: 15px; font-weight: bold;">CATEGORIA: SAÚDE DAS ÁRVORES</h3>
+                    <p>O que você observa sobre o bem-estar das árvores? Quais evidências encontra?</p>
+                </div>
+                
+                <div class="category-card" onclick="highlightCategory(this)">
+                    <span class="category-icon">⚖️</span>
+                    <h3 style="color: #e74c3c; margin-bottom: 15px; font-weight: bold;">CATEGORIA: CONFLITOS DE INTERESSE</h3>
+                    <p>Que situações mostram tensão entre necessidades humanas e direitos das árvores?</p>
+                </div>
+                
+                <div class="category-card" onclick="highlightCategory(this)">
+                    <span class="category-icon">🏙️</span>
+                    <h3 style="color: #3498db; margin-bottom: 15px; font-weight: bold;">CATEGORIA: IMPACTOS URBANOS</h3>
+                    <p>Como as árvores (ou sua ausência) afetam a vida na cidade?</p>
+                </div>
+                
+                <div class="category-card" onclick="highlightCategory(this)">
+                    <span class="category-icon">🚨</span>
+                    <h3 style="color: #f39c12; margin-bottom: 15px; font-weight: bold;">CATEGORIA: SEGURANÇA E RISCOS</h3>
+                    <p>Que evidências de riscos reais ou imaginários você encontra?</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ESTRATÉGIA DA FUNÇÃO SECRETA -->
+        <div class="roles-section">
+            <h2 style="font-size: 2rem; margin-bottom: 20px; color: #333;">🎲 ESTRATÉGIA DA FUNÇÃO SECRETA</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px; color: #666; font-weight: 600;">
+                <span class="pulse">ATENÇÃO:</span> Você receberá um papel secreto que só será revelado depois:
+            </p>
+            
+            <div class="roles-grid">
+                <div class="role-card">
+                    <div style="width: 60px; height: 60px; background: #e74c3c; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; color: white; font-size: 1.5rem;">🔴</div>
+                    <h3 style="color: #e74c3c; margin-bottom: 10px;">PROMOTOR</h3>
+                    <p>Buscará evidências de que a poda é prejudicial</p>
+                </div>
+                
+                <div class="role-card">
+                    <div style="width: 60px; height: 60px; background: #3498db; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; color: white; font-size: 1.5rem;">🔵</div>
+                    <h3 style="color: #3498db; margin-bottom: 10px;">DEFENSOR</h3>
+                    <p>Buscará evidências de que a poda é necessária</p>
+                </div>
+                
+                <div class="role-card">
+                    <div style="width: 60px; height: 60px; background: #95a5a6; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; color: white; font-size: 1.5rem;">⚪</div>
+                    <h3 style="color: #95a5a6; margin-bottom: 10px;">JURADO</h3>
+                    <p>Buscará evidências imparciais de ambos os lados</p>
+                </div>
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.9); padding: 25px; border-radius: 15px; margin-top: 25px; border: 3px solid #f39c12;">
+                <p style="font-size: 1.2rem; font-weight: 600; color: #333; text-align: center;">
+                    MAS atenção! Não sabendo seu papel/função neste momento, você deve observar <span style="background: #f39c12; color: white; padding: 2px 8px; border-radius: 5px;">TUDO</span> que achar importante em relação à situação das árvores!
+                </p>
+            </div>
+        </div>
+        
+        <!-- LOCAL PARA OBSERVAÇÕES -->
+        <div class="observations-section">
+            <h3 style="color: #667eea; font-size: 1.5rem; margin-bottom: 20px; margin-top: 30px;">📋 LOCAL PARA OBSERVAÇÕES COMPLEMENTARES</h3>
+            <p style="margin-bottom: 20px;">Anote aqui outras situações relevantes que você observar durante a investigação e entregue ao professor:</p>
+            <div class="text-lines"></div>
+        </div>
+        
+        <!-- BOTÕES INTERATIVOS -->
+        <div style="text-align: center; margin: 40px 0;">
+            <button class="interactive-element" onclick="imprimirRoteiro()">🖨️ Imprimir Roteiro</button>
+            <button class="interactive-element" onclick="salvarPDF()">💾 Salvar como PDF</button>
+            <button class="interactive-element" onclick="mostrarDicas()">💡 Dicas de Investigação</button>
+        </div>
+        
+        <!-- CRÉDITOS -->
+        <div style="background: rgba(255, 255, 255, 0.9); border-radius: 15px; padding: 25px; margin: 30px 0; text-align: center; border-top: 3px solid #667eea; box-shadow: 0 8px 25px rgba(0,0,0,0.1);">
+            <p style="font-style: italic; color: #666; font-size: 0.95rem; line-height: 1.6;">
+                <strong>Roteiro adaptado para sequência didática do doutorado em Ensino de Ciências Exatas da UNIVATES-RS.</strong><br>
+                <strong>Autor:</strong> Cláudio da Silva Mendonça, 2025.<br>
+                <em>Fins educacionais</em>
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Função de impressão
+        function imprimirRoteiro() {
+            try {
+                window.print();
+            } catch (error) {
+                alert('Para imprimir:\n\n1. Use Ctrl+P (Windows) ou Cmd+P (Mac)\n2. Ou clique no menu do navegador > Imprimir');
+            }
+        }
+        
+        // Função para salvar como PDF
+        function salvarPDF() {
+            alert('Para salvar como PDF:\n\n1. Pressione Ctrl+P (Windows) ou Cmd+P (Mac)\n2. Na janela de impressão, escolha "Salvar como PDF"\n3. Clique em "Salvar"\n4. Escolha onde salvar o arquivo');
+        }
+        
+        // Função de dicas
+        function mostrarDicas() {
+            const dicas = [
+                "🔍 Olhe além do óbvio - pequenos detalhes podem ser grandes evidências!",
+                "📸 Uma foto vale mais que mil palavras - documente tudo!",
+                "🤔 Questione sempre: Por que isso aconteceu? Havia outra solução?",
+                "⚖️ Lembre-se: você está buscando AMBOS os lados da questão!",
+                "🌳 Observe não só a árvore, mas todo o ambiente ao redor!",
+                "📝 Anote não apenas o que vê, mas também o que NÃO vê!",
+                "🚨 Identifique riscos reais versus riscos imaginários.",
+                "🏙️ Considere o impacto das árvores na qualidade de vida urbana."
+            ];
+            
+            const dicaAleatoria = dicas[Math.floor(Math.random() * dicas.length)];
+            alert('💡 DICA DE INVESTIGAÇÃO:\n\n' + dicaAleatoria);
+        }
+        
+        // Destacar categoria selecionada
+        function highlightCategory(elemento) {
+            // Remove destaque de outras categorias
+            const cards = document.querySelectorAll('.category-card');
+            cards.forEach(function(card) {
+                card.style.background = 'rgba(255, 255, 255, 0.9)';
+                card.style.color = '#333';
+                card.style.transform = 'scale(1)';
+            });
+            
+            // Destaca a categoria selecionada
+            elemento.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+            elemento.style.color = 'white';
+            elemento.style.transform = 'scale(1.05)';
+            
+            // Volta ao normal após 2 segundos
+            setTimeout(function() {
+                elemento.style.background = 'rgba(255, 255, 255, 0.9)';
+                elemento.style.color = '#333';
+                elemento.style.transform = 'scale(1)';
+            }, 2000);
+        }
+        
+        // Animação de fundo
+        function criarIconesFlutuantes() {
+            const bg = document.getElementById('animatedBg');
+            if (!bg) return;
+            
+            const icones = ['🌳', '🔍', '📱', '📝', '🏙️', '⚖️', '🚨'];
+            
+            setInterval(function() {
+                const icone = document.createElement('div');
+                icone.className = 'floating-icon';
+                icone.textContent = icones[Math.floor(Math.random() * icones.length)];
+                icone.style.left = Math.random() * 100 + 'vw';
+                icone.style.animationDelay = Math.random() * 2 + 's';
+                icone.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                
+                bg.appendChild(icone);
+                
+                setTimeout(function() {
+                    if (icone.parentNode) {
+                        icone.parentNode.removeChild(icone);
+                    }
+                }, 10000);
+            }, 3000);
+        }
+        
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicia animações de fundo
+            criarIconesFlutuantes();
+            
+            // Animação de entrada para cards
+            const cards = document.querySelectorAll('.instruction-card, .category-card, .role-card');
+            cards.forEach(function(card, index) {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                
+                setTimeout(function() {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
